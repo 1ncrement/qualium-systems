@@ -1,0 +1,20 @@
+{
+  "name": "frontend",
+  "description": "",
+  "main": "webpack.config.js",
+  "authors": [
+    "1ncrement <vakulenko.kname@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/1ncrement/qualium-systems",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

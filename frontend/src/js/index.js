@@ -1,13 +1,15 @@
 /**
  * Created by Increment on 30.08.2016.
  */
-import React, {Component} from 'react'
-import {render} from 'react-dom'
 import '../scss/index.scss'
 
+import React, {Component} from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import Root from './containers/Root'
+
 render(
-	<h2>Hello kitty!</h2>
+	<Root />
 	,
 	document.querySelector('#root')
 );
-
