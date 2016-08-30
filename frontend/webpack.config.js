@@ -11,12 +11,12 @@ module.exports = {
 		'webpack-hot-middleware/client',
 		'whatwg-fetch',
 		'babel-polyfill',
-		'./dev/js/index'
+		'./src/js/index'
 	],
 	output: {
-		path: path.join(__dirname, 'src/js'),
+		path: path.join(__dirname, 'bundle/js'),
 		filename: 'bundle.min.js',
-		publicPath: '/src/js/'
+		publicPath: '/bundle/js/'
 	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
@@ -30,14 +30,14 @@ module.exports = {
 			{
 				loaders: ['react-hot', 'babel-loader'],
 				include: [
-					path.resolve(__dirname, 'dev/js')
+					path.resolve(__dirname, 'src/js')
 				],
 				test: /\.js$/
 			},
 			{
 				loader: 'style-loader!css-loader!sass-loader',
 				include: [
-					path.resolve(__dirname, 'dev/scss')
+					path.resolve(__dirname, 'src/scss')
 				],
 				test: /\.scss$/
 			}
