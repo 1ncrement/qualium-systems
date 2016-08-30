@@ -5,7 +5,8 @@ var path = require('path'),
 	webpack = require('webpack');
 
 module.exports = {
-	devtool: 'cheap-module-eval-source-map',
+	// devtool: 'cheap-module-eval-source-map',
+	devtool: '',
 	entry: [
 		'webpack-hot-middleware/client',
 		'whatwg-fetch',

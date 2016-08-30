@@ -9,12 +9,12 @@ var express = require('express'),
 
 /** GET req */
 /** @todo добавить валидатор где будет метод registration */
-router.get('/logout', usersCtrl.login);
 router.get('/getusers', usersCtrl.getUsers);
 router.get('/removeusers', usersCtrl.removeUsers);
 
 /** POST req */
 router.post('/postuser', usersCtrl.postUser);
 router.post('/login', usersCtrl.login);
+router.post('/logout', usersCtrl.logout);
 
 module.exports = router;

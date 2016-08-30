@@ -55,7 +55,15 @@ userCtrl.login = (req, res, next) => {
 						console.log('Save user', result);
 					});
 
-					res.json({token});
+					res.json({
+						user: {
+							email: user.email,
+							firstName: user.firstName,
+							lastName: user.lastName,
+							_id: user._id
+						},
+						token
+					});
 				}
 			}
 		})
@@ -63,6 +71,7 @@ userCtrl.login = (req, res, next) => {
 };
 
 userCtrl.logout = (req, res, next) => {
+	console.log(req.body);
 	UsersSchem.findOne({token: req.body.authorization})
 		.then((user)=>{
 			user.token = null;
