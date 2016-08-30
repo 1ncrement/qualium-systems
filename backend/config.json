@@ -1,0 +1,15 @@
+{
+	"server":{
+		"port":8000
+	},
+	"mongoose": {
+		"uri": "mongodb://localhost/qualium",
+		"options": {
+			"server": {
+				"socketOptions": {
+					"keepAlive": 1
+				}
+			}
+		}
+	}
+}

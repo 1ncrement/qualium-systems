@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-jwt": "^3.4.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.5.9",
+    "status-errors": "0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
