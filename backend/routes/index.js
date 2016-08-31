@@ -18,7 +18,8 @@ router.post('/login', usersCtrl.login);
 router.post('/logout', usersCtrl.logout);
 
 /** News req */
-router.post('/getnews', newsCtrl.getNews);
+router.get('/getnews', newsCtrl.getNews);
 router.post('/addnews', newsCtrl.addNews);
+router.post('/removenews', newsCtrl.removeNews);
 
 module.exports = router;

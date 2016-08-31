@@ -8,11 +8,13 @@ var newsCtrl = {},
 	jwt = require('jsonwebtoken'),
 	expressJWT = require('express-jwt'),
 	express = require('express'),
+	paginate = require('express-paginate'),
 	app = express();
 
 var SECRET = 'sectersometoken';
 
 app.use(expressJWT({secret: SECRET}));
+app.use(paginate.middleware(5,30));
 
 newsCtrl.addNews = (req, res, next) => {
 	var b = req.body,
@@ -28,17 +30,24 @@ newsCtrl.addNews = (req, res, next) => {
 		.catch((err)=>{console.error(err); next(err)});
 };
 
-newsCtrl.getNews = (req, res, next) => {
+newsCtrl.removeNews = (req, res, next) => {
 	var b = req.body;
-	var defaultSize = 10;
-	b.page = b.page ? b.page*10 : 0;
 
-	NewsSchem.find({})
-		.skip(Number(b.page))
-		.limit(Number(b.size)||defaultSize)
-
-		.then((news)=>res.json(news))
+	NewsSchem.remove({"_id": b._id})
+		.then((data)=>res.json(data))
 		.catch((err)=>{console.error(err); next(err)});
+};
+
+newsCtrl.getNews = (req, res, next) => {
+	var props = {
+		page: Number(req.query.page),
+		limit: 10
+	};
+	NewsSchem.paginate({}, props, (err, news, pageCount, itemCount)=>{
+		if (err) return next(err);
+
+		res.json(news);
+	})
 };
 
 module.exports = newsCtrl;
