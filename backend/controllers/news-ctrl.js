@@ -41,7 +41,7 @@ newsCtrl.removeNews = (req, res, next) => {
 newsCtrl.getNews = (req, res, next) => {
 	var props = {
 		page: req.query.page ? Number(req.query.page) : 1,
-		limit: 10
+		limit: 5
 	};
 
 	NewsSchem.paginate({}, props, (err, news, pageCount, itemCount)=>{

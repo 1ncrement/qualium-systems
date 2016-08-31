@@ -8,7 +8,9 @@ export default class Home extends Component{
 		
 		return(
 			<div className="row">
-				<h2>Home page.</h2>
+				<div className="page-header">
+					<h2>Home page.</h2>
+				</div>
 			</div>
 		)
 	}

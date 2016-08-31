@@ -10,7 +10,9 @@ class RegComp extends Component {
 	render() {
 		return (
 			<div className="row">
-				<h3>Registration page</h3>
+				<div className="page-header">
+					<h2>Registration page</h2>
+				</div>
 				<form className="form-horizontal">
 					<div className="form-group">
 						<label className="col-sm-2 control-label">First Name</label>
