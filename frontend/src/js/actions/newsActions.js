@@ -55,7 +55,7 @@ export function removeNews(_id) {
 				}else{/** @todo добавить обновление состояния что бы был убран удалённый объект */
 					dispatch({
 						type: NEWS_REMOVE,
-						payload: data.ok
+						payload: _id
 					})
 				}
 			})

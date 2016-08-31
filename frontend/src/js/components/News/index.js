@@ -9,6 +9,10 @@ import moment from 'moment'
 import AddNews from './AddNews'
 
 class NewsComp extends Component{
+	componentWillMount(){
+		this.props.actions.getNews(this.props.news.page);
+	}
+
 	render(){
 		var news = (
 			<h4>Пока новостей нет.</h4>
@@ -23,8 +27,9 @@ class NewsComp extends Component{
 		if(this.props.news.docs){
 			news = this.props.news.docs.map((el)=>{
 				return (
-					<article key={el._id} className="news">
-						<span className="news-title">{el.title}<span className="news-props dropdown clearfix">
+					<article key={el._id} data-id={el._id} className="news">
+						<span className="news-title">{el.title}</span>
+						<span className="news-props pull-right dropdown clearfix">
 							<button className="btn btn-default btn-xs dropdown-toggle"
 							        type="button"
 							        id="dropdownMenu1"
@@ -33,17 +38,17 @@ class NewsComp extends Component{
 							        aria-expanded="true"><span className="caret"></span>
 							</button>
 							<ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a>Edit</a></li>
+								<li><a data-id={el._id} onClick={this.showEditForm.bind(this)}>Edit</a></li>
 								<li><a data-id={el._id} onClick={this.removeNews.bind(this)}>Remove</a></li>
 							</ul>
-						</span></span>
-						<p className="news-body">
+						</span>
+						<p className="news-text">
 							{el.text}
 						</p>
 						<footer>
-							<span className="author">author: {el.author}</span>
+							<span className="news-author">author: {el.author}</span>
 							{' '}
-							<span className="tags">tags: {el.tags.map((el, i)=>{return (<span key={i} className="label label-default">{el}</span>)})}</span>
+							<span className="news-tags">tags: {el.tags.map((el, i)=>{return (<span key={i} className="label label-default">{el}</span>)})}</span>
 							{' '}
 							<span className="date text-right pull-right"><small>date:</small> {moment(el.createdAt).startOf('min').fromNow()}</span>
 						</footer>
@@ -60,6 +65,7 @@ class NewsComp extends Component{
 				</li>
 			);
 		}
+
 		return(
 			<div className="row">
 				<div className="page-header">
@@ -91,15 +97,21 @@ class NewsComp extends Component{
 	}
 
 	removeNews(e){
+		e.preventDefault();
 		this.props.actions.removeNews(e.target.getAttribute('data-id'));
 	}
 
 	showFormAddNews(e){
+		e.preventDefault();
 		this.refs.formAddNews.classList.toggle('hide');
 	}
 
-	componentWillMount(){
-		this.props.actions.getNews(this.props.news.page);
+	showEditForm(e){
+		/** @todo доделать формирование формы которая будет брать значения из стейта по
+		 * id и написать бекенд на findOne с фильтром по _id и update-ом */
+		e.preventDefault();
+		let id = e.target.closest('article.news').getAttribute('data-id');
+		console.log(id);
 	}
 }
 

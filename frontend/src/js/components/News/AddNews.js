@@ -38,7 +38,9 @@ class AddNews extends Component{
 			title,
 			text,
 			tags
-		})
+		});
+
+		e.target.closest('div.row').classList.add('hide');
 	}
 }
 
