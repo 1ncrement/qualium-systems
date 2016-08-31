@@ -74,8 +74,8 @@ class AuthComp extends Component {
 }
 
 export default connect(
-	({userReducer}) => {
-		return {userReducer}
+	({user}) => {
+		return {user}
 	},
 	dispatch => {
 		return {

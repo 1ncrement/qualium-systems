@@ -11,7 +11,7 @@ import App from '../components/App'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
-import Users from '../pages/Users'
+import News from '../pages/News'
 
 export default class Root extends Component{
 	render(){
@@ -21,7 +21,7 @@ export default class Root extends Component{
 					<Route path="/" component={Home} />
 					<Route path="login" component={Login} />
 					<Route path="registration" component={Registration} />
-					<Route path="getusers" component={Users} />
+					<Route path="news" component={News} />
 				</Route>
 			</Router>
 		)

@@ -32,7 +32,7 @@ class Nav extends Component {
 					</div>
 					<div className="navbar-collapse collapse">
 						<ul className="nav navbar-nav">
-							<li><Link className="btn btn-default" to="/getusers">Get Users</Link></li>
+							<li><Link className="btn btn-default" to="/news">News</Link></li>
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							{user}
@@ -52,8 +52,8 @@ class Nav extends Component {
 }
 
 export default connect(
-	({userReducer}) => {
-		return {userReducer}
+	({user}) => {
+		return {user}
 	},
 	dispatch => {
 		return {

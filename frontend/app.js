@@ -7,6 +7,7 @@ var express = require('express'),
 	webpackHotMiddleware = require('webpack-hot-middleware'),
 	config = require('./webpack.config'),
 	configServer = require('./config'),
+	bodyParser = require('body-parser'),
 	path = require('path');
 
 var app = new (require('express'))();
@@ -14,6 +15,9 @@ var app = new (require('express'))();
 var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
 app.use(webpackHotMiddleware(compiler));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 /** File system */
 app.use(express.static('bower_components'), (req, res)=>{

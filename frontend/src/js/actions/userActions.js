@@ -44,7 +44,6 @@ export function authUser(formBody){
  * @desc при логауте не вызываеться рендер, разобраться "что за буйня" (как говорил великий Леонард TBBT)
  * */
 export function userLogout(){
-	console.log('logout');
 	return (dispatch) => {
 		fetch('http://localhost:8000/logout', {
 			method: 'post',
