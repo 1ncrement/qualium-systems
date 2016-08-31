@@ -2,7 +2,7 @@
  * Created by Increment on 31.08.2016.
  */
 import {USER_REG,USER_AUTH,USER_LOGOUT,USER_REG_ERR,USER_LOGIN_ERR} from '../constants/userConst'
-import Home from '../pages/Home'
+import {browserHistory} from 'react-router'
 
 export function authUser(formBody){
 	return (dispatch) => {
@@ -28,8 +28,7 @@ export function authUser(formBody){
 						type: USER_AUTH,
 						payload: data//object
 					});
-					// location.href = "http://localhost:3000/";
-					// /** @todo это очень и очень плохо! добавить фичу перехода при успешной авторизации*/
+					browserHistory.push('/');
 				}
 			})
 			.catch((err)=>{
@@ -61,14 +60,15 @@ export function userLogout(){
 				res.json()
 			})
 			.then((data)=>{
+				localStorage.removeItem('token');
+				localStorage.removeItem('user');
 				dispatch({
 					type: USER_LOGOUT,
 					payload: null//remove token in store
 				});
 			})
 			.then(()=>{
-				localStorage.removeItem('token');
-				localStorage.removeItem('user');
+				browserHistory.push('/');
 			})
 			.catch((err)=>{
 				dispatch({

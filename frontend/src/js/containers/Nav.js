@@ -10,12 +10,12 @@ import {Link} from 'react-router'
 class Nav extends Component {
 	render() {
 		var sign = (
-			<Link className="btn btn-default" to="/login">Sign In</Link>
+				<li><Link className="btn btn-default" to="/login">Sign In</Link></li>
 		),
 			user = '';
 		if (localStorage.getItem('token')) {
 			sign = (
-				<a className="btn btn-default" onClick={this.logout.bind(this)}>Logout</a>
+				<li><a className="btn btn-default" onClick={this.logout.bind(this)}>Logout</a></li>
 			)
 		}
 		if(localStorage.getItem('user')){
@@ -36,7 +36,7 @@ class Nav extends Component {
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							{user}
-							<li>{sign}</li>
+							{sign}
 							<li><Link className="btn btn-success" to="/registration">Sign Up</Link></li>
 						</ul>
 					</div>
