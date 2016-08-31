@@ -9,21 +9,23 @@ import {Link} from 'react-router'
 
 class Nav extends Component {
 	render() {
-		var sign = (
-				<li><Link className="btn btn-default" to="/login">Sign In</Link></li>
-		),
+		var sign = [],
 			user = '';
+		sign.push(<li key="login"><Link className="btn btn-default" to="/login">Sign In</Link></li>);
+		sign.push(<li key="reg"><Link className="btn btn-success" to="/registration">Sign Up</Link></li>);
+
 		if (localStorage.getItem('token')) {
-			sign = (
-				<li><a className="btn btn-default" onClick={this.logout.bind(this)}>Logout</a></li>
-			)
+			sign = [];
+			sign.push(<li key="logout"><a className="btn btn-default" onClick={this.logout.bind(this)}>Logout</a></li>)
 		}
+
 		if(localStorage.getItem('user')){
 			let obj = JSON.parse(localStorage.getItem('user'));
 			user = (
 				<li><p className="navbar-text">Вы авторизованы как {obj.firstName} {obj.lastName}</p></li>
 			)
 		}
+
 		return (
 			<nav className="navbar navbar-default navbar-fixed-top">
 				<div className="container">
@@ -36,8 +38,7 @@ class Nav extends Component {
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							{user}
-							{sign}
-							<li><Link className="btn btn-success" to="/registration">Sign Up</Link></li>
+							{sign.map(el=>el)}
 						</ul>
 					</div>
 				</div>

@@ -39,15 +39,17 @@ newsCtrl.removeNews = (req, res, next) => {
 };
 
 newsCtrl.getNews = (req, res, next) => {
-	var props = {
+	var params = {
 		page: req.query.page ? Number(req.query.page) : 1,
-		limit: 5
+		limit: 5,
+		sort: {createdAt: -1}
 	};
 
-	NewsSchem.paginate({}, props, (err, news, pageCount, itemCount)=>{
-		if (err) return next(err);
-		return news;
-	})
+	NewsSchem
+		.paginate({}, params, (err, news, pageCount, itemCount)=> {
+			if (err) return next(err);
+			return news;
+		})
 		.then((data)=>{
 			res.json(data);
 		})

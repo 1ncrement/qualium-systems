@@ -52,7 +52,6 @@ userCtrl.login = (req, res, next) => {
 							console.log(err);
 							return;
 						}
-						console.log('Save user', result);
 					});
 
 					res.json({

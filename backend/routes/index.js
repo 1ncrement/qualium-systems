@@ -5,7 +5,8 @@ var express = require('express'),
 	path = require('path'),
 	router = express.Router(),
 	usersCtrl = require('../controllers/users-ctrl'),
-	newsCtrl = require('../controllers/news-ctrl');
+	newsCtrl = require('../controllers/news-ctrl')
+	checkToken = require('../middleware/checkToken');
 
 
 /** User req */
@@ -18,7 +19,7 @@ router.post('/login', usersCtrl.login);
 router.post('/logout', usersCtrl.logout);
 
 /** News req */
-router.get('/getnews', newsCtrl.getNews);
+router.get('/getnews', checkToken, newsCtrl.getNews);
 router.post('/addnews', newsCtrl.addNews);
 router.post('/removenews', newsCtrl.removeNews);
 

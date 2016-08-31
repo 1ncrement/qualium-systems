@@ -9,17 +9,22 @@ export function getNews(page){
 		fetch(`http://localhost:8000/getnews${page ? '?page='+page : ''}`, {
 			method: 'get',
 			headers: {
-				// 'Accept': 'application/json',
-				// 'Content-Type': 'application/json',
 				'authorization': localStorage.getItem('token')
 			}
 		})
 			.then((res)=> res.json())
 			.then((data)=>{
-				dispatch({
-					type: NEWS_SET,
-					payload: data
-				});
+				if(data.err){
+					dispatch({
+						type: NEWS_GET_ERR,
+						payload: data
+					});
+				}else{
+					dispatch({
+						type: NEWS_SET,
+						payload: data
+					});
+				}
 			})
 			.catch((err)=>{
 				dispatch({

@@ -1,7 +1,7 @@
 /**
  * Created by user on 31.08.2016.
  */
-import {NEWS_ADD,NEWS_SET,NEWS_REMOVE} from '../constants/newsConst'
+import {NEWS_ADD,NEWS_SET,NEWS_REMOVE,NEWS_GET_ERR} from '../constants/newsConst'
 
 const initialState = {
 	page: 1
@@ -17,6 +17,8 @@ export default function (state = initialState, action) {
 			};
 		case NEWS_SET:
 			return action.payload;
+		case NEWS_GET_ERR:
+			return {err: action.payload};
 		case NEWS_REMOVE:
 			return state;
 		default:

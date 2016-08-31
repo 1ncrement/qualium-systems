@@ -13,6 +13,13 @@ class NewsComp extends Component{
 		var news = (
 			<h4>Пока новостей нет.</h4>
 		);
+
+		if(!localStorage.getItem('user')){
+			news = (
+				<h4>Вы не авторизованы.</h4>
+			)
+		}
+
 		if(this.props.news.docs){
 			news = this.props.news.docs.map((el)=>{
 				return (
@@ -26,7 +33,7 @@ class NewsComp extends Component{
 							        aria-expanded="true"><span className="caret"></span>
 							</button>
 							<ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a >Edit</a></li>
+								<li><a>Edit</a></li>
 								<li><a data-id={el._id} onClick={this.removeNews.bind(this)}>Remove</a></li>
 							</ul>
 						</span></span>
@@ -36,9 +43,9 @@ class NewsComp extends Component{
 						<footer>
 							<span className="author">author: {el.author}</span>
 							{' '}
-							<span className="tags">{el.tags.join(', ')}</span>
+							<span className="tags">tags: {el.tags.map((el, i)=>{return (<span key={i} className="label label-default">{el}</span>)})}</span>
 							{' '}
-							<span className="date text-right">{moment(el.createdAt).format('MMM Do YY')}</span>
+							<span className="date text-right pull-right"><small>date:</small> {moment(el.createdAt).startOf('min').fromNow()}</span>
 						</footer>
 					</article>
 				)
@@ -56,7 +63,11 @@ class NewsComp extends Component{
 		return(
 			<div className="row">
 				<div className="page-header">
-					<h2>News page. <small><a onClick={this.showFormAddNews.bind(this)} className="btn btn-info btn-xs">Add</a></small></h2>
+					<h2>News page. <small><a
+						onClick={this.showFormAddNews.bind(this)}
+						className={`btn btn-info btn-xs ${localStorage.getItem('user') ? '':'disabled'}`}>
+						Add
+					</a></small></h2>
 				</div>
 				<div className="row hide" ref="formAddNews">
 					<AddNews />
