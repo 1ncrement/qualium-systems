@@ -10,7 +10,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	path = require('path');
 
-var app = new (require('express'))();
+var app = express();
 
 var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
@@ -24,8 +24,8 @@ app.use(express.static('bower_components'), (req, res)=>{
 	res.sendFile(path.join(__dirname, req.url));
 });
 
-app.get(['/','/login','/registration','/logout','/getusers','/removeusers'], (req, res)=>{
-	res.sendFile(__dirname+'/index.html');
+app.get(['/', '/login', '/registration', '/logout', '/news'], (req, res)=>{
+	res.sendFile(__dirname + '/index.html');
 });
 
 app.get('*', (req, res) => {

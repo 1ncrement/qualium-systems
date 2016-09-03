@@ -38,6 +38,25 @@ newsCtrl.removeNews = (req, res, next) => {
 		.catch((err)=>{console.error(err); next(err)});
 };
 
+newsCtrl.editNews = (req, res, next) => {
+	var b = req.body,
+		title = b.title,
+		text = b.text,
+		props = {};
+	title && (props.title = title);
+	text && (props.text = text);
+	console.log('props=>',props);
+
+	NewsSchem.findOneAndUpdate({"_id": b._id},{
+		$set: props
+	},
+	{ upsert: true })
+		.then((data)=>{
+			res.json(data)//old data
+		})
+		.catch((err)=>{console.error(err); next(err)});
+};
+
 newsCtrl.getNews = (req, res, next) => {
 	var params = {
 		page: req.query.page ? Number(req.query.page) : 1,

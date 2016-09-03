@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import * as actions from '../../actions/newsActions'
 import moment from 'moment'
 import AddNews from './AddNews'
+import InlineEdit from 'react-edit-inline'
 
 class NewsComp extends Component{
 	componentWillMount(){
@@ -14,11 +15,12 @@ class NewsComp extends Component{
 	}
 
 	render(){
+		let flag = !!localStorage.getItem('user');
 		var news = (
 			<h4>Пока новостей нет.</h4>
 		);
 
-		if(!localStorage.getItem('user')){
+		if(!flag){
 			news = (
 				<h4>Вы не авторизованы.</h4>
 			)
@@ -28,23 +30,36 @@ class NewsComp extends Component{
 			news = this.props.news.docs.map((el)=>{
 				return (
 					<article key={el._id} data-id={el._id} className="news">
-						<span className="news-title">{el.title}</span>
-						<span className="news-props pull-right dropdown clearfix">
-							<button className="btn btn-default btn-xs dropdown-toggle"
-							        type="button"
-							        id="dropdownMenu1"
-							        data-toggle="dropdown"
-							        aria-haspopup="true"
-							        aria-expanded="true"><span className="caret"></span>
-							</button>
-							<ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a data-id={el._id} onClick={this.showEditForm.bind(this)}>Edit</a></li>
-								<li><a data-id={el._id} onClick={this.removeNews.bind(this)}>Remove</a></li>
-							</ul>
+						<span className="news-title">
+							{
+								flag ?
+								<InlineEdit
+									activeClassName="form-control"
+									text={el.title}
+								   change={this.changeInput.bind(this)}
+									paramName={`title~${el._id}`}
+								/>
+								:
+								el.title
+							}
 						</span>
+
+						<a data-id={el._id} className={`close pull-right ${flag?'':'hide'}`} onClick={this.removeNews.bind(this)}>&times;</a>
+
 						<p className="news-text">
-							{el.text}
+							{
+								flag ?
+									<InlineEdit
+										activeClassName="form-control"
+										text={el.text}
+										change={this.changeInput.bind(this)}
+										paramName={`text~${el._id}`}
+									/>
+									:
+									el.text
+							}
 						</p>
+
 						<footer>
 							<span className="news-author">author: {el.author}</span>
 							{' '}
@@ -71,7 +86,7 @@ class NewsComp extends Component{
 				<div className="page-header">
 					<h2>News page. <small><a
 						onClick={this.showFormAddNews.bind(this)}
-						className={`btn btn-info btn-xs ${localStorage.getItem('user') ? '':'disabled'}`}>
+						className={`btn btn-info btn-xs ${flag ? '':'hide'}`}>
 						Add
 					</a></small></h2>
 				</div>
@@ -106,12 +121,20 @@ class NewsComp extends Component{
 		this.refs.formAddNews.classList.toggle('hide');
 	}
 
-	showEditForm(e){
+	changeInput(value){
+		let _id, param;
+		
+		for(var prop in value){
+			_id = prop.split('~')[1];
+			param = prop.split('~')[0];
+		}
+		
+		this.props.actions.editNews({
+			_id,
+			[param]: value[prop]
+		});
 		/** @todo доделать формирование формы которая будет брать значения из стейта по
 		 * id и написать бекенд на findOne с фильтром по _id и update-ом */
-		e.preventDefault();
-		let id = e.target.closest('article.news').getAttribute('data-id');
-		console.log(id);
 	}
 }
 

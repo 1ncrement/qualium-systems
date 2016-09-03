@@ -1,7 +1,7 @@
 /**
  * Created by user on 31.08.2016.
  */
-import {NEWS_SET,NEWS_REMOVE,NEWS_GET_ERR,NEWS_REMOVE_ERR,NEWS_ADD_ERR,NEWS_ADD} from '../constants/newsConst'
+import {NEWS_SET,NEWS_REMOVE,NEWS_GET_ERR,NEWS_REMOVE_ERR,NEWS_ADD_ERR,NEWS_ADD,NEWS_EDIT,NEWS_EDIT_ERR} from '../constants/newsConst'
 import {browserHistory} from 'react-router'
 
 export function getNews(page){
@@ -62,6 +62,39 @@ export function removeNews(_id) {
 			.catch((err)=>{
 				dispatch({
 					type: NEWS_REMOVE_ERR,
+					payload: err
+				})
+			});
+	}
+}
+
+export function editNews(value) {
+	return (dispatch) => {
+		fetch('http://localhost:8000/editnews', {
+			method: 'post',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(value)
+		})
+			.then((res)=>res.json())
+			.then((data)=>{
+				if(!data.ok){
+					dispatch({
+						type: NEWS_EDIT_ERR,
+						payload: data.err
+					})
+				}else{
+					dispatch({
+						type: NEWS_EDIT,
+						payload: value
+					})
+				}
+			})
+			.catch((err)=>{
+				dispatch({
+					type: NEWS_EDIT_ERR,
 					payload: err
 				})
 			});

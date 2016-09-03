@@ -19,8 +19,9 @@ router.post('/login', usersCtrl.login);
 router.post('/logout', usersCtrl.logout);
 
 /** News req */
-router.get('/getnews', checkToken, newsCtrl.getNews);
+router.get('/getnews', newsCtrl.getNews);
 router.post('/addnews', checkToken, newsCtrl.addNews);
 router.post('/removenews', checkToken, newsCtrl.removeNews);
+router.post('/editnews', checkToken, newsCtrl.editNews);
 
 module.exports = router;
