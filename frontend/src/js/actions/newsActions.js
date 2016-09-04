@@ -3,10 +3,11 @@
  */
 import {NEWS_SET,NEWS_REMOVE,NEWS_GET_ERR,NEWS_REMOVE_ERR,NEWS_ADD_ERR,NEWS_ADD,NEWS_EDIT,NEWS_EDIT_ERR} from '../constants/newsConst'
 import {browserHistory} from 'react-router'
+import config from '../config'
 
 export function getNews(page){
 	return (dispatch) => {
-		fetch(`http://localhost:8000/getnews${page ? '?page='+page : ''}`, {
+		fetch(`${config.server}/getnews${page ? '?page='+page : ''}`, {
 			method: 'get',
 			headers: {
 				'authorization': localStorage.getItem('token')
@@ -37,7 +38,7 @@ export function getNews(page){
 
 export function removeNews(_id) {
 	return (dispatch) => {
-		fetch('http://localhost:8000/removenews', {
+		fetch(`${config.server}/removenews`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -70,7 +71,7 @@ export function removeNews(_id) {
 
 export function editNews(value) {
 	return (dispatch) => {
-		fetch('http://localhost:8000/editnews', {
+		fetch(`${config.server}/editnews`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -103,7 +104,7 @@ export function editNews(value) {
 
 export function addNews(bodyForm) {
 	return (dispatch) => {
-		fetch('http://localhost:8000/addnews', {
+		fetch(`${config.server}/addnews`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',

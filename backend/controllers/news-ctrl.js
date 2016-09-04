@@ -45,7 +45,6 @@ newsCtrl.editNews = (req, res, next) => {
 		props = {};
 	title && (props.title = title);
 	text && (props.text = text);
-	console.log('props=>',props);
 
 	NewsSchem.findOneAndUpdate({"_id": b._id},{
 		$set: props

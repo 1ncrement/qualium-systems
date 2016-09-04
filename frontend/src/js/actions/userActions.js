@@ -3,10 +3,11 @@
  */
 import {USER_REG,USER_AUTH,USER_LOGOUT,USER_REG_ERR,USER_LOGIN_ERR} from '../constants/userConst'
 import {browserHistory} from 'react-router'
+import config from '../config'
 
 export function authUser(formBody){
 	return (dispatch) => {
-		fetch('http://localhost:8000/login', {
+		fetch(`${config.server}/login`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -45,7 +46,7 @@ export function authUser(formBody){
  * */
 export function userLogout(){
 	return (dispatch) => {
-		fetch('http://localhost:8000/logout', {
+		fetch(`${config.server}/logout`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -80,7 +81,7 @@ export function userLogout(){
 
 export function registrationUser(formBody){
 	return (dispatch) => {
-		fetch('http://localhost:8000/postuser', {
+		fetch(`${config.server}/postuser`, {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
