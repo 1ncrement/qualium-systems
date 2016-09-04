@@ -13,10 +13,10 @@ class TaskManager extends Component{
 		return(
 			<div className="taskManager">
 				<h3>Task list <small>count: {this.props.calendar.tasks.length}</small></h3>
-				<ul>
+				<ul className="list-unstyled">
 					{
 						this.props.calendar.tasks.map(el=>{
-							return (<li key={el._id}>{el.date} text: {el.text}</li>)
+							return (<li key={el._id} style={{'color': `#${el.color}`}} >{el.time} text: {el.text}</li>)
 						})
 					}
 				</ul>
