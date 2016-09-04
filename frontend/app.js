@@ -24,7 +24,7 @@ app.use(express.static('bower_components'), (req, res)=>{
 	res.sendFile(path.join(__dirname, req.url));
 });
 
-app.get(['/', '/login', '/registration', '/logout', '/news'], (req, res)=>{
+app.get(['/', '/login', '/registration', '/logout', '/news', '/calendar'], (req, res)=>{
 	res.sendFile(__dirname + '/index.html');
 });
 

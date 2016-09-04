@@ -1,0 +1,6 @@
+/**
+ * Created by Increment on 04.09.2016.
+ */
+export const CALENDAR_ADD_TASK = 'CALENDAR_ADD_TASK';
+export const CALENDAR_CHANGE_SELECT_DAY = 'CALENDAR_CHANGE_SELECT_DAY';
+export const CALENDAR_ADD_TASK_ERR = 'CALENDAR_ADD_TASK_ERR';

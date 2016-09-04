@@ -4,8 +4,10 @@
 import {combineReducers} from 'redux'
 import userReducer from './userReducer'
 import newsReducer from './newsReducer'
+import calendarReducer from './calendarReducer'
 
 export default combineReducers({
 	user: userReducer,
-	news: newsReducer
+	news: newsReducer,
+	calendar: calendarReducer
 })

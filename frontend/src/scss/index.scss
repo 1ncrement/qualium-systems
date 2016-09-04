@@ -1,31 +1,55 @@
-body{
+body {
 	margin-top: 60px;
 	color: #838383;
 	background-color: #f8f8f8;
 }
-.news{
+
+.container.main {
+	min-height: 400px;
+}
+
+.news {
 	position: relative;
 	margin-bottom: 20px;
-	span{
+	span {
 		display: inline-block;
 	}
-	.news-props{
+	.news-props {
 		margin-left: 10px;
 	}
-	.news-text{
+	.news-text {
 		display: block;
 	}
-	footer{
+	footer {
 		padding-top: 3px;
 		padding-bottom: 3px;
 		border-bottom: 1px solid white;
-		.news-tags{
+		.news-tags {
 			margin-right: 20px;
 			margin-left: 20px;
-			.label{
+			.label {
 				margin-right: 2px;
 				margin-left: 2px;
 			}
 		}
+	}
+}
+
+.calendar.table {
+	width: 400px;
+	margin: 0 auto;
+	thead tr th {
+		border-bottom: none;
+	}
+	td.day-no-curr {
+		color: #cccccc;
+	}
+	td.day-today {
+		background-color: cornflowerblue;
+		color: #f8f8f8;
+	}
+	td.selected {
+		background-color: darkorange;
+		color: #f8f8f8;
 	}
 }

@@ -35,6 +35,7 @@ class Nav extends Component {
 					<div className="navbar-collapse collapse">
 						<ul className="nav navbar-nav">
 							<li><Link className="btn btn-default" to="/news">News</Link></li>
+							<li><Link className="btn btn-default" to="/calendar">Calendar</Link></li>
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							{user}
