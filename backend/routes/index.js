@@ -5,7 +5,8 @@ var express = require('express'),
 	path = require('path'),
 	router = express.Router(),
 	usersCtrl = require('../controllers/users-ctrl'),
-	newsCtrl = require('../controllers/news-ctrl')
+	newsCtrl = require('../controllers/news-ctrl'),
+	calendarCtrl = require('../controllers/calendar-ctrl'),
 	checkToken = require('../middleware/checkToken');
 
 
@@ -23,5 +24,9 @@ router.get('/getnews', newsCtrl.getNews);
 router.post('/addnews', checkToken, newsCtrl.addNews);
 router.post('/removenews', checkToken, newsCtrl.removeNews);
 router.post('/editnews', checkToken, newsCtrl.editNews);
+
+/** Calendar req*/
+router.post('/calendar/add', calendarCtrl.addTask);
+router.post('/calendar/get', calendarCtrl.getTask);
 
 module.exports = router;

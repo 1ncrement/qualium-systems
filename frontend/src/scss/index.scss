@@ -35,21 +35,23 @@ body {
 	}
 }
 
-.calendar.table {
+.calendar{
 	width: 400px;
 	margin: 0 auto;
-	thead tr th {
-		border-bottom: none;
-	}
-	td.day-no-curr {
-		color: #cccccc;
-	}
-	td.day-today {
-		background-color: cornflowerblue;
-		color: #f8f8f8;
-	}
-	td.selected {
-		background-color: darkorange;
-		color: #f8f8f8;
+	.table {
+		thead tr th {
+			border-bottom: none;
+		}
+		td.day-no-curr {
+			color: #cccccc;
+		}
+		td.day-today {
+			background-color: cornflowerblue;
+			color: #f8f8f8;
+		}
+		td.selected {
+			background-color: darkorange;
+			color: #f8f8f8;
+		}
 	}
 }
